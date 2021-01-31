@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+     
+        <div class="booking-form" id="bookingForm">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying Form</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="firstClassTicketService" class="inp-style inp-width" type="" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="ticketAmountCount('firstClassTicketService',true)"><span>+</span></button> 
+                    <button onclick="ticketAmountCount('firstClassTicketService',false)"><span id="minus">-</span></button>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="economyClassTicketService" class="inp-style inp-width" type="" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="ticketAmountCount('economyClassTicketService',true)"> <span>+</span></button>
+                    <button onclick="ticketAmountCount('economyClassTicketService',false)"><span>-</span></button>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p><span id="subtotalAmount">0</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p><span id="vatAmount">0</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p><span id="totalAmount">0</span></p>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Book Now" class="btn-style" id="bookNowBtn"></input>
+    
+        </div>
+
+        <div class="finalMessage" id="finalMessage">
+            <h1>Congratulation!</h1>
+            <p> You booked successfully.</p>
+            <h3>Having a nice journey.</h3>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+    </section>
+
+    <!--Thank You-->
+
+
+<script>
+        
+    function subTotalAmount() {
+        const firstClass = document.getElementById("firstClassTicketService").value;
+	    const economyClass = document.getElementById("economyClassTicketService").value;
+	    const firstClassTicketPrice = parseInt(firstClass) * 150;
+	    const economyClassTicketPrice = parseInt(economyClass) * 100;
+	    const totalTicketPrice = firstClassTicketPrice + economyClassTicketPrice;
+	    document.getElementById("subtotalAmount").innerText = "$" + totalTicketPrice;
+   
+	    const vatAmount = totalTicketPrice * 0.1;
+        document.getElementById("vatAmount").innerText = "$" + vatAmount;
+    
+	    const totalAmount = totalTicketPrice + vatAmount;
+        document.getElementById("totalAmount").innerText = "$" + totalAmount;
+     
+     if(totalAmount > 0) {
+            document.getElementById('bookNowBtn').addEventListener("click", function(){
+            document.getElementById('bookingForm').style.display = "none";
+            document.getElementById("finalMessage").style.display = "block";
+            })
+    
+     }
+   }
+
+    function ticketAmountCount(idValue,isIncrease) {
+    
+       const inputAmount = document.getElementById(idValue);
+       const ticketCount = parseInt(inputAmount.value);
+       let newTicketCount = ticketCount;
+    if (isIncrease == true) {
+        newTicketCount = newTicketCount + 1;
+         }
+    if(isIncrease == false && ticketCount > 0) {
+               newTicketCount = newTicketCount - 1;
+    }
+    inputAmount.value = newTicketCount;
+    subTotalAmount();
+    }
+
+</script>
+</body>
+
+</html>
