@@ -123,10 +123,11 @@ input.btn-style{
 }
  
 span {
-    cursor: pointer; 
     font-weight: 700;
-    margin: 3px;
-    
+    margin: 3px;  
+}
+button {
+    cursor: pointer; 
 }
 button:hover {
     background-color:rgba(0, 0, 0, 0.075); 
